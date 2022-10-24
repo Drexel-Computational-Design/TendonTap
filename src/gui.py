@@ -8,7 +8,7 @@ from gui_models import Camera
 from gui_views import StartWindow
 
 # Initialize camera
-camera = Camera(1)
+camera = Camera(0)
 camera.initialize()
 
 
