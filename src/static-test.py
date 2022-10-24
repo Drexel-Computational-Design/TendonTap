@@ -1,5 +1,5 @@
 # Imports
-import mediaoioe as mp
+import mediapipe as mp
 import cv2
 
 # Define tools for drawing and solution model
