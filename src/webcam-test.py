@@ -10,7 +10,7 @@ mp_pose = mp.solutions.pose
 
 
 # Connect to webcam
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 with mp_pose.Pose(
     min_detection_confidence=0.5,
