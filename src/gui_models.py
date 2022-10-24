@@ -10,60 +10,60 @@ import cv2
 
 
 class Camera:
-	"""
-	Class to set up camera access
-	"""
+    """
+    Class to set up camera access
+    """
 
-	def __init__(self, cam_num):
-		self.cam_num = cam_num
-		self.cap = None
-		self.last_frame = np.zeros((1,1))
-
-
-	def initialize(self):
-		self.cap = cv2.VideoCapture(self.cam_num)
+    def __init__(self, cam_num):
+        self.cam_num = cam_num
+        self.cap = None
+        self.last_frame = np.zeros((1,1))
 
 
-	def get_frame(self):
-		ret, self.last_frame = self.cap.read()
-		return self.last_frame
+    def initialize(self):
+        self.cap = cv2.VideoCapture(self.cam_num)
 
 
-	def acquire_movie(self, num_frames):
-		movie = []
-		for _ in range(num_frames):
-			movie.append(self.get_frame())
-		return movie
+    def get_frame(self):
+        ret, self.last_frame = self.cap.read()
+        return self.last_frame
 
 
-	def set_brightness(self, value):
-		self.cap.set(cv2.CAP_PROP_BRIGHTNESS, value)
+    def acquire_movie(self, num_frames):
+        movie = []
+        for _ in range(num_frames):
+            movie.append(self.get_frame())
+        return movie
 
 
-	def get_brightness(self):
-		return self.cap.get(cv2.CAP_PROP_BRIGHTNESS)
+    def set_brightness(self, value):
+        self.cap.set(cv2.CAP_PROP_BRIGHTNESS, value)
 
 
-	def close_camera(self):
-		self.cap.release()
+    def get_brightness(self):
+        return self.cap.get(cv2.CAP_PROP_BRIGHTNESS)
 
 
-	def __str__(self):
-		return f"OpenCV Camera {self.cam_num}"
+    def close_camera(self):
+        self.cap.release()
+
+
+    def __str__(self):
+        return f"OpenCV Camera {self.cam_num}"
 
 
 if __name__ == '__main__':
-	cam = Camera(1)
-	cam.initialize()
-	print(cam)
+    cam = Camera(1)
+    cam.initialize()
+    print(cam)
 
-	frame = cam.get_frame()
-	print(frame)
+    frame = cam.get_frame()
+    print(frame)
 
-	cam.set_brightness(1)
-	print(cam.get_brightness())
+    cam.set_brightness(1)
+    print(cam.get_brightness())
 
-	cam.set_brightness(0.5)
-	print(cam.get_brightness())
+    cam.set_brightness(0.5)
+    print(cam.get_brightness())
 
-	cam.close_camera()
+    cam.close_camera()
