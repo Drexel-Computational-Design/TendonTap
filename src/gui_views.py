@@ -44,6 +44,11 @@ class StartWindow(QMainWindow):
         self.button_movie = QPushButton('Start Movie', self.central_widget)
         self.image_view = ColorImageView()
 
+        # Hide the controls for imageview
+        self.image_view.ui.histogram.hide()
+        self.image_view.ui.roiBtn.hide()
+        self.image_view.ui.menuBtn.hide()
+
         # Define layout
         self.layout = QVBoxLayout(self.central_widget)
         self.layout.addWidget(self.button_frame)
@@ -71,7 +76,7 @@ class StartWindow(QMainWindow):
     def start_movie(self):
         self.movie_thread = MovieThread(self.camera)
         self.movie_thread.start()
-        self.update_timer.start(30)
+        self.update_timer.start(90)
 
 
 class MovieThread(QThread):
@@ -84,7 +89,7 @@ class MovieThread(QThread):
         self.camera = camera
 
     def run(self):
-        self.camera.acquire_movie(200)
+        self.camera.acquire_movie(800)
 
 
 if __name__ == '__main__':
